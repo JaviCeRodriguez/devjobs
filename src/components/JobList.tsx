@@ -1,10 +1,20 @@
 import React from "react";
+import { Box } from "@chakra-ui/react";
+import Job from "./Job";
 
 const JobList: React.FC = () => {
   return (
-    <div>
-      <h1>JobList</h1>
-    </div>
+    <Box>
+      <Job />
+      <Job />
+      <Job />
+      <Job />
+      <Job />
+      <Job />
+      <Job />
+      <Job />
+      <Job />
+    </Box>
   );
 };
 
