@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -16,12 +16,23 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import Confetti from "react-confetti";
 
-const Nav: React.FC = () => {
+const Nav: React.FC<{ onOpen: () => void }> = ({ onOpen }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+  const [confetti, setConfetti] = useState(false);
+
+  useEffect(() => {
+    if (confetti) {
+      setTimeout(() => {
+        setConfetti(false);
+      }, 6000);
+    }
+  }, [confetti]);
+
   return (
     <>
+      {confetti && <Confetti />}
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Heading as="h2" fontSize={24}>
@@ -62,8 +73,10 @@ const Nav: React.FC = () => {
                     <p>Javo 🧉</p>
                   </Center>
                   <MenuDivider />
-                  <MenuItem>Add Job</MenuItem>
-                  <MenuItem>About Javo</MenuItem>
+                  <MenuItem onClick={onOpen}>Add Job</MenuItem>
+                  <MenuItem onClick={() => setConfetti(true)}>
+                    Primer Empleo IT
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

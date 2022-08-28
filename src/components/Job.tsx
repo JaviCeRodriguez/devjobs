@@ -20,6 +20,7 @@ const Job: React.FC<JobProps> = ({ job, setJobId }) => {
       px={2}
       py={3}
       _hover={{ bgColor: "red.500" }}
+      width="100%"
       maxWidth={{ base: "full", md: "xl" }}
     >
       <Box>

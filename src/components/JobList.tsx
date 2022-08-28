@@ -10,7 +10,12 @@ interface JobListProps {
 
 const JobList: React.FC<JobListProps> = ({ jobs, setJobId }) => {
   return (
-    <Box>
+    <Box
+      display="flex"
+      justifyContent="space-around"
+      flexWrap="wrap"
+      width="100%"
+    >
       {jobs.map((job: JobType) => (
         <Job key={job.id} job={job} setJobId={setJobId} />
       ))}

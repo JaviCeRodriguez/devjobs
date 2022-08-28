@@ -45,8 +45,7 @@ const App = () => {
         onOpen={onOpen}
         onClose={handleCloseModal}
       />
-      <Nav />
-      <Button onClick={onOpen}>Add Job</Button>
+      <Nav onOpen={onOpen} />
       {isLoading ? (
         <Box>Loading...</Box>
       ) : (
