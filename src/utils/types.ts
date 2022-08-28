@@ -1,12 +1,22 @@
 export interface Job {
-  id: string;
-  title: string;
-  description: string;
-  company: string;
-  location: string;
-  date: string;
-  url: string;
+  id?: string;
   rol: string;
+  seniority: string;
+  company: string;
+  description: string;
+  location: string;
+  createdAt?: string;
+  url?: string;
   tags?: string[];
-  seniority?: string;
+}
+
+export interface ModalFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onOpen: () => void;
+}
+
+export interface FormProps {
+  handleOnSubmit: (values: Job) => void;
+  onClose: () => void;
 }

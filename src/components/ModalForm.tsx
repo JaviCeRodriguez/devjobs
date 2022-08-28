@@ -1,38 +1,30 @@
+import React from "react";
 import {
-  Button,
   Modal,
-  ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
-import React from "react";
-
-interface ModalFormProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onOpen: () => void;
-}
+import { ModalFormProps } from "utils/types";
+import Form from "./Form";
 
 const ModalForm: React.FC<ModalFormProps> = (props) => {
   const { isOpen, onClose } = props;
+
+  const handleOnSubmit = (values: any) => {
+    // onClose();
+    console.log("values", values);
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
+        <ModalHeader>Add Job to list</ModalHeader>
         <ModalCloseButton />
-        <ModalBody>Sarasa</ModalBody>
 
-        <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onClose}>
-            Close
-          </Button>
-          <Button variant="ghost">Secondary Action</Button>
-        </ModalFooter>
+        <Form handleOnSubmit={handleOnSubmit} onClose={onClose} />
       </ModalContent>
     </Modal>
   );
