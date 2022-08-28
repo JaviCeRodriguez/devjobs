@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   FormControl,
@@ -12,6 +12,11 @@ import {
 } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import { FormProps } from "utils/types";
+import {
+  getElementById,
+  addElement,
+  updateElementById,
+} from "../api/localstorage/crud";
 
 const initialValues = {
   id: "",
@@ -22,7 +27,7 @@ const initialValues = {
   description: "",
 };
 
-const Form: React.FC<FormProps> = ({ handleOnSubmit, onClose }) => {
+const Form: React.FC<FormProps> = ({ jobId, onClose }) => {
   const [values, setValues] = React.useState(initialValues);
 
   const handleOnChange = (
@@ -32,10 +37,22 @@ const Form: React.FC<FormProps> = ({ handleOnSubmit, onClose }) => {
   };
 
   const submitValues = (values: any) => {
-    const valuesWithId = { ...values, id: uuidv4() };
-    handleOnSubmit(valuesWithId);
+    if (values.id) {
+      updateElementById("jobs", jobId, values);
+    } else {
+      const valuesWithId = { ...values, id: uuidv4() };
+      addElement("jobs", valuesWithId);
+    }
     setValues(initialValues);
+    onClose();
   };
+
+  useEffect(() => {
+    if (jobId) {
+      const job = getElementById("jobs", jobId);
+      setValues(job || initialValues);
+    }
+  }, []);
 
   return (
     <>
@@ -119,16 +136,16 @@ const Form: React.FC<FormProps> = ({ handleOnSubmit, onClose }) => {
           Cancel
         </Button>
         <Button
-          loadingText="Submitting"
+          loadingText={jobId ? "Updating" : "Submitting"}
           size="md"
-          bg={"blue.400"}
+          bg={jobId ? "orange.400" : "blue.400"}
           color={"white"}
           _hover={{
-            bg: "blue.500",
+            bg: jobId ? "orange.500" : "blue.500",
           }}
           onClick={() => submitValues(values)}
         >
-          Add new Job
+          {jobId ? "Update" : "Submit"}
         </Button>
       </ModalFooter>
     </>

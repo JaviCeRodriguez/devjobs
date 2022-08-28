@@ -28,12 +28,12 @@ export const addElement = (item: string, value: Job) => {
   setItem(item, elementsJSON);
 }
 
-export const updateElementById = (item: string, id: string, newElem: string) => {
+export const updateElementById = (item: string, id: string, newElem: Job) => {
   const elementsJSON: Job[] = getItem(item);
   if (elementsJSON) { // Otra opción acá era usar splice
     const newElements = elementsJSON.map((elem: Job) => {
       if (elem.id === id) {
-        newElem;
+        return newElem;
       }
       return elem;
     });

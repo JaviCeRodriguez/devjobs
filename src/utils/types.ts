@@ -1,5 +1,5 @@
 export interface Job {
-  id?: string;
+  id: string;
   rol: string;
   seniority: string;
   company: string;
@@ -11,12 +11,13 @@ export interface Job {
 }
 
 export interface ModalFormProps {
+  jobId: string;
   isOpen: boolean;
   onClose: () => void;
   onOpen: () => void;
 }
 
 export interface FormProps {
-  handleOnSubmit: (values: Job) => void;
+  jobId: string;
   onClose: () => void;
 }

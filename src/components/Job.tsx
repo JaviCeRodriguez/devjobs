@@ -3,7 +3,12 @@ import { Box, Button, ButtonGroup, Heading, Text } from "@chakra-ui/react";
 import { DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
 import { Job as JobType } from "../utils/types";
 
-const Job: React.FC<{ job: JobType }> = ({ job }) => {
+interface JobProps {
+  job: JobType;
+  setJobId: (id: string, type: string) => void;
+}
+
+const Job: React.FC<JobProps> = ({ job, setJobId }) => {
   return (
     <Box
       display="flex"
@@ -19,15 +24,27 @@ const Job: React.FC<{ job: JobType }> = ({ job }) => {
     >
       <Box>
         <Heading as="h4" fontSize={16} fontWeight="semibold">
-          Job title - Rol - Seniority
+          {job.rol} - {job.seniority}
         </Heading>
-        <Text>Location - Date</Text>
+        <Text>
+          {job.location} - {job.createdAt ?? ""}
+        </Text>
       </Box>
       <ButtonGroup>
-        <Button leftIcon={<RepeatIcon />} colorScheme="blue" variant="solid">
+        <Button
+          onClick={() => setJobId(job.id, "UPDATE")}
+          leftIcon={<RepeatIcon />}
+          colorScheme="blue"
+          variant="solid"
+        >
           Update
         </Button>
-        <Button leftIcon={<DeleteIcon />} colorScheme="red" variant="solid">
+        <Button
+          onClick={() => setJobId(job.id, "DELETE")}
+          leftIcon={<DeleteIcon />}
+          colorScheme="red"
+          variant="solid"
+        >
           Delete
         </Button>
       </ButtonGroup>

@@ -44,14 +44,18 @@ const Nav: React.FC = () => {
                 >
                   <Avatar
                     size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
+                    src={
+                      "https://img.wattpad.com/2d88ae482e4c03d72316691f36d484e3aa9e23e9/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f57416554547679506e3132656c673d3d2d3433332e313635363032613830623662363937613937373639353431353134382e6a7067?s=fit&w=720&h=720"
+                    }
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <Center my={4}>
                     <Avatar
                       size={"2xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
+                      src={
+                        "https://img.wattpad.com/2d88ae482e4c03d72316691f36d484e3aa9e23e9/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f57416554547679506e3132656c673d3d2d3433332e313635363032613830623662363937613937373639353431353134382e6a7067?s=fit&w=720&h=720"
+                      }
                     />
                   </Center>
                   <Center my={4}>
