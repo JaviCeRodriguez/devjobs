@@ -10,21 +10,31 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
+import { v4 as uuidv4 } from "uuid";
 import { FormProps } from "utils/types";
 
+const initialValues = {
+  id: "",
+  rol: "",
+  seniority: "",
+  company: "",
+  location: "",
+  description: "",
+};
+
 const Form: React.FC<FormProps> = ({ handleOnSubmit, onClose }) => {
-  const [values, setValues] = React.useState({
-    rol: "",
-    seniority: "",
-    company: "",
-    location: "",
-    description: "",
-  });
+  const [values, setValues] = React.useState(initialValues);
 
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const submitValues = (values: any) => {
+    const valuesWithId = { ...values, id: uuidv4() };
+    handleOnSubmit(valuesWithId);
+    setValues(initialValues);
   };
 
   return (
@@ -116,7 +126,7 @@ const Form: React.FC<FormProps> = ({ handleOnSubmit, onClose }) => {
           _hover={{
             bg: "blue.500",
           }}
-          onClick={() => handleOnSubmit(values)}
+          onClick={() => submitValues(values)}
         >
           Add new Job
         </Button>

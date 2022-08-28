@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Button, ButtonGroup, Heading, Text } from "@chakra-ui/react";
 import { DeleteIcon, RepeatIcon } from "@chakra-ui/icons";
+import { Job as JobType } from "../utils/types";
 
-const Job: React.FC = () => {
+const Job: React.FC<{ job: JobType }> = ({ job }) => {
   return (
     <Box
       display="flex"

@@ -1,7 +1,7 @@
 import { Job } from "utils/types";
 
 export const getItem = (item: string) =>  {
-  const elementsStringify = localStorage.getItem(item);
+  const elementsStringify = window.localStorage.getItem(item);
   if (elementsStringify) {
     const elementsJSON: Job[] = JSON.parse(elementsStringify ?? []);
     return elementsJSON;
@@ -20,6 +20,12 @@ export const removeItem = (item: string) => {
 export const getElementById = (item: string, id: string) => {
   const elementsJSON: Job[] = getItem(item);
   return elementsJSON.find(element => element.id === id);
+}
+
+export const addElement = (item: string, value: Job) => {
+  const elementsJSON: Job[] = getItem(item);
+  elementsJSON.push(value);
+  setItem(item, elementsJSON);
 }
 
 export const updateElementById = (item: string, id: string, newElem: string) => {

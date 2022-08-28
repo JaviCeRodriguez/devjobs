@@ -7,14 +7,16 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import { ModalFormProps } from "utils/types";
+import { addElement } from "../api/localstorage/crud";
 import Form from "./Form";
 
 const ModalForm: React.FC<ModalFormProps> = (props) => {
   const { isOpen, onClose } = props;
 
   const handleOnSubmit = (values: any) => {
-    // onClose();
     console.log("values", values);
+    addElement("jobs", values);
+    onClose();
   };
 
   return (
